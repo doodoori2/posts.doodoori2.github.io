@@ -18,6 +18,10 @@ script:
   - pushd output
   - git checkout master
   - git pull
+  - popd
+  - rsync contents/html/ output/html -az --delete
+  - pushd output
   - git add -f .
   - git commit -a -m "add new site content"
   - test $? -eq "0" && git push https://${GH_TOKEN}@github.com/doodoori2/doodoori2.github.io master --quiet
+  - popd
