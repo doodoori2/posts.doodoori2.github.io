@@ -1,0 +1,3 @@
+[submodule "output"]
+	path = output
+	url = https://github.com/doodoori2/doodoori2.github.io
