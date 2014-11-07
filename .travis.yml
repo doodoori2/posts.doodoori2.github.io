@@ -1,0 +1,23 @@
+﻿language: python
+
+python:
+  - "2.7"
+
+env:
+  global:
+    - secure: ""
+
+install:
+  - pip install -r requirements.txt -q
+
+before_script:
+  - git config --global user.email "doodoori2@gmail.com"
+  - git config --global user.name "Travis"
+
+script:
+  - pushd output
+  - git checkout master
+  - git pull
+  - git add -f .
+  - git commit -a -m "add new site content"
+  - test $? -eq "0" && git push https://${GH_TOKEN}@github.com/doodoori2/doodoori2.github.io master --quiet
