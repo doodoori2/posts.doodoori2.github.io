@@ -23,5 +23,5 @@ script:
   - pushd output
   - git add -f .
   - git commit -a -m "add new site content"
-  - test $? -eq "0" && git push https://${GH_TOKEN}@github.com/doodoori2/doodoori2.github.io master --quiet
+  - test $? -eq "0" && git push https://${secure}@github.com/doodoori2/doodoori2.github.io master --quiet
   - popd
