@@ -21,7 +21,7 @@ before_script:
 
 script:
   - pushd output
-  - git remote add deploy git@github.com:doodoori2/doodoori2.github.io.git
+  - git remote add master git@github.com:doodoori2/doodoori2.github.io.git
   - git checkout master
   - git pull
   - popd
@@ -29,5 +29,5 @@ script:
   - pushd output
   - git add -f .
   - git commit -a -m "add new site content"
-  - test $? -eq "0" && git push deploy
+  - test $? -eq "0" && git push master
   - popd
