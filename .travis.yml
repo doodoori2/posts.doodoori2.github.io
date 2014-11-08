@@ -24,7 +24,6 @@ script:
   - rsync contents/html/ output/html -az --delete
   - pushd output
   - git add -f .
-  - git commit -a -m "add new site content"
-  - git push https://${GH_TOKEN}@github.com/doodoori2/doodoori2.github.io.git master --quiet
+  - if [ `git diff --cached | wc -l` -ne 0 ] ; then git commit -a -m "add new site content" && git push https://${GH_TOKEN}@github.com/doodoori2/doodoori2.github.io.git master --quiet; fi
   - popd
 
