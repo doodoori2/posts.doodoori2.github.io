@@ -14,11 +14,11 @@ before_script:
   - git config --global user.email "doodoori2@gmail.com"
   - git config --global user.name "doodoori2"
   - git config --global push.default simple
-  - mkdir -p ./travis
-  - openssl aes-256-cbc -K $encrypted_df8640f23a3a_key -iv $encrypted_df8640f23a3a_iv -in id_rsa.enc -out ./travis/id_rsa -d
-  - chmod 600 .travis/deploy_key.pem
+  - mkdir -p .travis
+  - openssl aes-256-cbc -K $encrypted_df8640f23a3a_key -iv $encrypted_df8640f23a3a_iv -in .travis/id_rsa.enc -out .travis/id_rsa -d
+  - chmod 600 .travis/id_rsa
   - eval `ssh-agent -s`    
-  - ssh-add .travis/deploy_key.pem
+  - ssh-add .travis/id_rsa
 
 script:
   - pushd output
