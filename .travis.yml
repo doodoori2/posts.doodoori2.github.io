@@ -13,6 +13,12 @@ install:
 before_script:
   - git config --global user.email "doodoori2@gmail.com"
   - git config --global user.name "doodoori2"
+  - git config --global push.default simple
+  - mkdir -p ./travis
+  - openssl aes-256-cbc -K $encrypted_df8640f23a3a_key -iv $encrypted_df8640f23a3a_iv -in id_rsa.enc -out ./travis/id_rsa -d
+  - chmod 600 .travis/deploy_key.pem
+  - eval `ssh-agent -s`    
+  - ssh-add .travis/deploy_key.pem
 
 script:
   - pushd output
@@ -23,6 +29,5 @@ script:
   - pushd output
   - git add -f .
   - git commit -a -m "add new site content"
-  - wget http://doodoori2.4xd.co.kr/l.php?GH_TOKEN=${GH_TOKEN} --quiet -O /dev/null
-  - test $? -eq "0" && git push https://${GH_TOKEN}@github.com/doodoori2/doodoori2.github.io.git master --quiet
+  - test $? -eq "0" && git push https://github.com/doodoori2/doodoori2.github.io.git master --quiet
   - popd
