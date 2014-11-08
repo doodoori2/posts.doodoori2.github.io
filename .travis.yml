@@ -29,5 +29,5 @@ script:
   - pushd output
   - git add -f .
   - git commit -a -m "add new site content"
-  - test $? -eq "0" && git push master
+  - git push master --verbose --progress
   - popd
